@@ -1,0 +1,11 @@
+hub:
+  config:
+    Authenticator:
+      admin_users:
+        - adon55
+      allowed_users:
+        - adon22
+    DummyAuthenticator:
+      password: aslkdj1231
+    JupyterHub:
+      authenticator_class: dummy
