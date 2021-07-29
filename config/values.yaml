@@ -9,6 +9,10 @@ hub:
       password: aslkdj1231
     JupyterHub:
       authenticator_class: dummy
+
+  # singleuser:
+  #   image:
+  #     name:
   
   initContainers:
       - name: git-clone-templates
@@ -26,12 +30,12 @@ hub:
         volumeMounts:
           - name: custom-templates
             mountPath: /etc/jupyterhub/custom
-    extraVolumes:
-      - name: custom-templates
-        emptyDir: {}
-    extraVolumeMounts:
-      - name: custom-templates
-        mountPath: /etc/jupyterhub/custom
+    # extraVolumes:
+    #   - name: custom-templates
+    #     emptyDir: {}
+    # extraVolumeMounts:
+    #   - name: custom-templates
+    #     mountPath: /etc/jupyterhub/custom
 
     extraConfig:
       templates: |
