@@ -10,9 +10,18 @@ hub:
     JupyterHub:
       authenticator_class: dummy
 
-  # singleuser:
-  #   image:
-  #     name:
+  singleuser:
+    image:
+      name:
+    extraVolumeMounts:
+      - name: etc-gitconfig
+        mountPath: /etc/gitconfig
+        subPath: gitconfig
+        readOnly: true
+      # - name: etc-gitconfig
+      #   mountPath: /etc/github/github-app-private-key.pem
+      #   subPath: github-app-private-key.pem
+      #   readOnly: true
   
   initContainers:
       - name: git-clone-templates
@@ -30,12 +39,12 @@ hub:
         volumeMounts:
           - name: custom-templates
             mountPath: /etc/jupyterhub/custom
-    # extraVolumes:
-    #   - name: custom-templates
-    #     emptyDir: {}
-    # extraVolumeMounts:
-    #   - name: custom-templates
-    #     mountPath: /etc/jupyterhub/custom
+    extraVolumes:
+      - name: custom-templates
+        emptyDir: {}
+    extraVolumeMounts:
+      - name: custom-templates
+        mountPath: /etc/jupyterhub/custom
 
     extraConfig:
       templates: |
